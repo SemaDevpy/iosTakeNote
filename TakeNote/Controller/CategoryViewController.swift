@@ -8,10 +8,10 @@
 
 import UIKit
 import CoreData
+import SwipeCellKit
 
+class CategoryViewController: UITableViewController, SwipeTableViewCellDelegate {
 
-class CategoryViewController: UITableViewController {
-    
     var categories = [Category]()
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -46,11 +46,21 @@ class CategoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.firstCell, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.firstCell, for: indexPath)  as! SwipeTableViewCell
+        cell.delegate = self
         cell.textLabel?.text = categories[indexPath.row].name
         return cell
     }
     
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+           let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            self.context.delete(self.categories[indexPath.row])
+            self.categories.remove(at: indexPath.row)
+            self.saveCategory()
+           }
+           return [deleteAction]
+       }
     
     //MARK: - Data Manupulation Methods
     func saveCategory(){

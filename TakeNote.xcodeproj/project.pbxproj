@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5045190D759A4E9A8BDB050D /* Pods_TakeNote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B6E1BA67C9D8FE87C5654CD /* Pods_TakeNote.framework */; };
 		A21AFAF8256AB3CF0078DBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AFAF7256AB3CF0078DBFB /* AppDelegate.swift */; };
 		A21AFAFA256AB3CF0078DBFB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AFAF9256AB3CF0078DBFB /* SceneDelegate.swift */; };
 		A21AFAFC256AB3CF0078DBFB /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AFAFB256AB3CF0078DBFB /* CategoryViewController.swift */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		146A02BB5D21AB0326F63044 /* Pods-TakeNote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeNote.release.xcconfig"; path = "Target Support Files/Pods-TakeNote/Pods-TakeNote.release.xcconfig"; sourceTree = "<group>"; };
+		7B6E1BA67C9D8FE87C5654CD /* Pods_TakeNote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TakeNote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A21AFAF4256AB3CF0078DBFB /* TakeNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A21AFAF7256AB3CF0078DBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A21AFAF9256AB3CF0078DBFB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +31,7 @@
 		A21AFB06256AB3D50078DBFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A21AFB08256AB3D50078DBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A21AFB11256AB73A0078DBFB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A3512AC9575967E70FF3B1E1 /* Pods-TakeNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeNote.debug.xcconfig"; path = "Target Support Files/Pods-TakeNote/Pods-TakeNote.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +39,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5045190D759A4E9A8BDB050D /* Pods_TakeNote.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B866D2B0BF842597ECF9B99 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A3512AC9575967E70FF3B1E1 /* Pods-TakeNote.debug.xcconfig */,
+				146A02BB5D21AB0326F63044 /* Pods-TakeNote.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A21AFAEB256AB3CF0078DBFB = {
 			isa = PBXGroup;
 			children = (
 				A21AFAF6256AB3CF0078DBFB /* TakeNote */,
 				A21AFAF5256AB3CF0078DBFB /* Products */,
+				7B866D2B0BF842597ECF9B99 /* Pods */,
+				EC70007556791FFDD20BE532 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,8 +82,7 @@
 				A21AFB10256AB6F80078DBFB /* Model */,
 				A21AFB0E256AB6E00078DBFB /* Controller */,
 				A21AFB0F256AB6EA0078DBFB /* View */,
-				A21AFB03256AB3D50078DBFB /* Assets.xcassets */,
-				A21AFB05256AB3D50078DBFB /* LaunchScreen.storyboard */,
+				A21AFB13256ABE650078DBFB /* Supporting Staff */,
 				A21AFB08256AB3D50078DBFB /* Info.plist */,
 				A21AFB11256AB73A0078DBFB /* Constants.swift */,
 			);
@@ -97,6 +113,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A21AFB13256ABE650078DBFB /* Supporting Staff */ = {
+			isa = PBXGroup;
+			children = (
+				A21AFB03256AB3D50078DBFB /* Assets.xcassets */,
+				A21AFB05256AB3D50078DBFB /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Staff";
+			sourceTree = "<group>";
+		};
+		EC70007556791FFDD20BE532 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7B6E1BA67C9D8FE87C5654CD /* Pods_TakeNote.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -104,9 +137,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A21AFB0B256AB3D50078DBFB /* Build configuration list for PBXNativeTarget "TakeNote" */;
 			buildPhases = (
+				137C7FE362EF21FF0CBA6771 /* [CP] Check Pods Manifest.lock */,
 				A21AFAF0256AB3CF0078DBFB /* Sources */,
 				A21AFAF1256AB3CF0078DBFB /* Frameworks */,
 				A21AFAF2256AB3CF0078DBFB /* Resources */,
+				2E5AE64A727479C69013C682 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -162,6 +197,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		137C7FE362EF21FF0CBA6771 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TakeNote-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2E5AE64A727479C69013C682 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TakeNote/Pods-TakeNote-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TakeNote/Pods-TakeNote-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TakeNote/Pods-TakeNote-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A21AFAF0256AB3CF0078DBFB /* Sources */ = {
@@ -314,6 +391,7 @@
 		};
 		A21AFB0C256AB3D50078DBFB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3512AC9575967E70FF3B1E1 /* Pods-TakeNote.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -331,6 +409,7 @@
 		};
 		A21AFB0D256AB3D50078DBFB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 146A02BB5D21AB0326F63044 /* Pods-TakeNote.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
