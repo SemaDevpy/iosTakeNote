@@ -40,7 +40,7 @@ class CategoryViewController: UITableViewController, SwipeTableViewCellDelegate 
     }
     
     
-    //MARK: - TableView Methods
+    //MARK: - TableView DataSource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories.count
     }
@@ -61,6 +61,18 @@ class CategoryViewController: UITableViewController, SwipeTableViewCellDelegate 
            }
            return [deleteAction]
        }
+    
+    //MARK: - TableView Delegate Methods
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: K.segue, sender: self)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! NoteViewController
+        if let indexPath = tableView.indexPathForSelectedRow{
+            destinationVC.selectedCategory = categories[indexPath.row]
+        }
+        
+    }
     
     //MARK: - Data Manupulation Methods
     func saveCategory(){

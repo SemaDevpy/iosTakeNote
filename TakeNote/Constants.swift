@@ -11,5 +11,7 @@ import Foundation
 
 struct K {
     static let firstCell = "categoryCell"
+    static let secondCell = "noteCell"
     static let segue = "goToNotes"
+    static let secondSegue = "goToAddNote"
 }

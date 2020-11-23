@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,8 @@
 		A21AFB04256AB3D50078DBFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A21AFB03256AB3D50078DBFB /* Assets.xcassets */; };
 		A21AFB07256AB3D50078DBFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A21AFB05256AB3D50078DBFB /* LaunchScreen.storyboard */; };
 		A21AFB12256AB73A0078DBFB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AFB11256AB73A0078DBFB /* Constants.swift */; };
+		A23E468B256BC7BA0066A61B /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23E468A256BC7BA0066A61B /* NoteViewController.swift */; };
+		A23E468D256BD4970066A61B /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23E468C256BD4970066A61B /* AddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		A21AFB06256AB3D50078DBFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A21AFB08256AB3D50078DBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A21AFB11256AB73A0078DBFB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A23E468A256BC7BA0066A61B /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		A23E468C256BD4970066A61B /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		A3512AC9575967E70FF3B1E1 /* Pods-TakeNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeNote.debug.xcconfig"; path = "Target Support Files/Pods-TakeNote/Pods-TakeNote.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,7 +56,6 @@
 				A3512AC9575967E70FF3B1E1 /* Pods-TakeNote.debug.xcconfig */,
 				146A02BB5D21AB0326F63044 /* Pods-TakeNote.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -93,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				A21AFAFB256AB3CF0078DBFB /* CategoryViewController.swift */,
+				A23E468A256BC7BA0066A61B /* NoteViewController.swift */,
+				A23E468C256BD4970066A61B /* AddViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -247,8 +252,10 @@
 			files = (
 				A21AFB12256AB73A0078DBFB /* Constants.swift in Sources */,
 				A21AFB02256AB3CF0078DBFB /* TakeNote.xcdatamodeld in Sources */,
+				A23E468D256BD4970066A61B /* AddViewController.swift in Sources */,
 				A21AFAFC256AB3CF0078DBFB /* CategoryViewController.swift in Sources */,
 				A21AFAF8256AB3CF0078DBFB /* AppDelegate.swift in Sources */,
+				A23E468B256BC7BA0066A61B /* NoteViewController.swift in Sources */,
 				A21AFAFA256AB3CF0078DBFB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
