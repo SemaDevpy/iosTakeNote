@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddViewController: UIViewController {
     var selectedCategory : Category?
@@ -49,4 +50,12 @@ class AddViewController: UIViewController {
            }
        }
     
+    
+    
+    func loadNote(){
+         let request : NSFetchRequest<Note> = Note.fetchRequest()
+         let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+         request.predicate = categoryPredicate
+       
+     }
 }

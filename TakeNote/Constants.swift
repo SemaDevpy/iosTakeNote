@@ -14,4 +14,6 @@ struct K {
     static let secondCell = "noteCell"
     static let segue = "goToNotes"
     static let secondSegue = "goToAddNote"
+    static let thirdSegue = "goToUpdateNote"
+    
 }

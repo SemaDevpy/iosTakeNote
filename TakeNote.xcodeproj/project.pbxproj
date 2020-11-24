@@ -18,6 +18,7 @@
 		A21AFB12256AB73A0078DBFB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AFB11256AB73A0078DBFB /* Constants.swift */; };
 		A23E468B256BC7BA0066A61B /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23E468A256BC7BA0066A61B /* NoteViewController.swift */; };
 		A23E468D256BD4970066A61B /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23E468C256BD4970066A61B /* AddViewController.swift */; };
+		A2D4F87E256D614800977F66 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4F87D256D614800977F66 /* UpdateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		A21AFB11256AB73A0078DBFB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A23E468A256BC7BA0066A61B /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		A23E468C256BD4970066A61B /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		A2D4F87D256D614800977F66 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		A3512AC9575967E70FF3B1E1 /* Pods-TakeNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeNote.debug.xcconfig"; path = "Target Support Files/Pods-TakeNote/Pods-TakeNote.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 				A21AFAFB256AB3CF0078DBFB /* CategoryViewController.swift */,
 				A23E468A256BC7BA0066A61B /* NoteViewController.swift */,
 				A23E468C256BD4970066A61B /* AddViewController.swift */,
+				A2D4F87D256D614800977F66 /* UpdateViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				A21AFAF8256AB3CF0078DBFB /* AppDelegate.swift in Sources */,
 				A23E468B256BC7BA0066A61B /* NoteViewController.swift in Sources */,
 				A21AFAFA256AB3CF0078DBFB /* SceneDelegate.swift in Sources */,
+				A2D4F87E256D614800977F66 /* UpdateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
