@@ -52,10 +52,10 @@ class AddViewController: UIViewController {
     
     
     
-    func loadNote(){
-         let request : NSFetchRequest<Note> = Note.fetchRequest()
-         let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
-         request.predicate = categoryPredicate
-       
-     }
+//    func loadNote(){
+//         let request : NSFetchRequest<Note> = Note.fetchRequest()
+//         let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+//         request.predicate = categoryPredicate
+//
+//     }
 }

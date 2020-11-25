@@ -52,7 +52,7 @@ class CategoryViewController: UITableViewController, SwipeTableViewCellDelegate 
         return cell
     }
     
-    
+    //Delete in CRUD
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
            let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             self.context.delete(self.categories[indexPath.row])

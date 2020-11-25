@@ -11,9 +11,6 @@ import CoreData
 import SwipeCellKit
 
 class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
-   
-    
-
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var notesArray = [Note]()
     var selectedCategory : Category? {
@@ -31,6 +28,8 @@ class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    
     
     
     //MARK: - Creating new note(Create in CRUD)
@@ -56,25 +55,26 @@ class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notesArray.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.secondCell, for: indexPath) as! SwipeTableViewCell
         cell.delegate = self
         cell.textLabel?.text = "Title: \(notesArray[indexPath.row].title!)"
         return cell
     }
-
+    
     
     
     //MARK: - Delete in CRUD
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-            let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             self.context.delete(self.notesArray[indexPath.row])
             self.notesArray.remove(at: indexPath.row)
             self.saveNote()
-           }
-           return [deleteAction]
-       }
+        }
+        return [deleteAction]
+    }
+    
     
     
     
@@ -83,14 +83,18 @@ class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
         performSegue(withIdentifier: K.thirdSegue, sender: self)
         
     }
-
+    
     
     //MARK: - Model manupulation methods, Read in CRUD
-    func loadNotes(){
-        let request : NSFetchRequest<Note> = Note.fetchRequest()
+    func loadNotes(with request : NSFetchRequest<Note> = Note.fetchRequest(), predicate : NSPredicate? = nil){
         let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
-        request.predicate = categoryPredicate
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+        if let savePredicate = predicate{
+           let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, savePredicate])
+           request.predicate = compoundPredicate
+        }else{
+            request.predicate = categoryPredicate
+        }
+        
         do{
             notesArray = try context.fetch(request)
         }catch{
@@ -100,14 +104,39 @@ class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
     }
     
     func saveNote(){
-           do {
-               try context.save()
-           }catch{
-               print("Error saving context \(error)")
-           }
-           tableView.reloadData()
-       }
+        do {
+            try context.save()
+        }catch{
+            print("Error saving context \(error)")
+        }
+        tableView.reloadData()
+    }
     
-
+    
 }
 
+
+    //MARK: - Searching Functionality
+extension NoteViewController : UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request : NSFetchRequest<Note> = Note.fetchRequest()
+       
+        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        loadNotes(predicate: predicate)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0{
+            loadNotes()
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+            
+        }
+    }
+
+}
