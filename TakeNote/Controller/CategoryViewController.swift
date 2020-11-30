@@ -80,16 +80,16 @@ class CategoryViewController: UITableViewController, SwipeTableViewCellDelegate 
         }
     
     //MARK: - TableView Delegate Methods
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: K.segue, sender: self)
-//    }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let destinationVC = segue.destination as! NoteViewController
-//        if let indexPath = tableView.indexPathForSelectedRow{
-//            destinationVC.selectedCategory = categories[indexPath.row]
-//        }
-//
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: K.segue, sender: self)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! NoteViewController
+        if let indexPath = tableView.indexPathForSelectedRow{
+            destinationVC.selectedCategory = categories?[indexPath.row]
+        }
+
+    }
     
     //MARK: - Data Manupulation Methods
     func save(category : Category){

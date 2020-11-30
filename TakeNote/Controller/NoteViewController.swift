@@ -7,20 +7,24 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 import SwipeCellKit
 
 class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
-    var notesArray = [Note]()
+    
+    let realm = try! Realm()
+    
+    var notes : Results<Note>?
+    
     var selectedCategory : Category? {
         didSet{
-           // loadNotes()
+            loadNotes()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        //loadNotes()
+        loadNotes()
     }
     
     
@@ -42,8 +46,8 @@ class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
         }else{
             let destinationVC = segue.destination as! UpdateViewController
             if let indexPath = tableView.indexPathForSelectedRow{
-                destinationVC.titleOfNote = notesArray[indexPath.row].title
-                destinationVC.bodyOfNote = notesArray[indexPath.row].body
+                destinationVC.titleOfNote = notes?[indexPath.row].title
+                destinationVC.bodyOfNote = notes?[indexPath.row].body
             }
         }
     }
@@ -52,13 +56,13 @@ class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
     
     // MARK: - Table view data source methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notesArray.count
+        return notes?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.secondCell, for: indexPath) as! SwipeTableViewCell
-//        cell.delegate = self
-//        //cell.textLabel?.text = "Title: \(notesArray[indexPath.row].title!)"
+        cell.delegate = self
+        cell.textLabel?.text = "Title: \(notes?[indexPath.row].title ?? "note not added yet")"
         return cell
     }
     
@@ -67,14 +71,25 @@ class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
     //MARK: - Delete in CRUD
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            //self.context.delete(self.notesArray[indexPath.row])
-            self.notesArray.remove(at: indexPath.row)
-            self.saveNote()
+            if let noteForDeletion = self.notes?[indexPath.row]{
+                do{
+                    try self.realm.write{
+                        self.realm.delete(noteForDeletion)
+                    }
+                }catch{
+                    print("error in deleting the note\(error)")
+                }
+            }
+           
         }
         return [deleteAction]
     }
     
-    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+              var options = SwipeOptions()
+              options.expansionStyle = .destructive
+              return options
+          }
     
     
     //MARK: - TableView Delegate Methods, Update in CRUD
@@ -84,23 +99,13 @@ class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
     }
     
     
-    //MARK: - Model manupulation methods, Read in CRUD
-//    func loadNotes(with request : NSFetchRequest<Note> = Note.fetchRequest(), predicate : NSPredicate? = nil){
-//        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
-//        if let savePredicate = predicate{
-//           let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, savePredicate])
-//           request.predicate = compoundPredicate
-//        }else{
-//            request.predicate = categoryPredicate
-//        }
-//
-//        do{
-//            notesArray = try context.fetch(request)
-//        }catch{
-//            print("error in fetching the data \(error)")
-//        }
-//        tableView.reloadData()
-//    }
+    //MARK: - Model manupulation methods, Read in CRUD    
+    func loadNotes(){
+        notes = selectedCategory?.notes.sorted(byKeyPath: "title", ascending: true)
+        tableView.reloadData()
+    }
+    
+    
     
     func saveNote(){
 //        do {

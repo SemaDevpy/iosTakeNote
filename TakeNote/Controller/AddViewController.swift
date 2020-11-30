@@ -7,11 +7,16 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class AddViewController: UIViewController {
+    
+    let realm = try! Realm()
+    
+    var notes : Results<Note>?
+    
     var selectedCategory : Category?
-//    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
 
     
     @IBOutlet weak var titleNote: UITextField!
@@ -25,13 +30,21 @@ class AddViewController: UIViewController {
     
     //Create of CRUD
     @IBAction func addButtonPressed(_ sender: UIButton) {
-        let newNote = Note()
-//        newNote.title = titleNote.text
-//        newNote.body = body.text
-//        newNote.date = Date()
-//        newNote.parentCategory = selectedCategory
-//        saveNote()
-//        navigationController?.popViewController(animated: true)
+        
+        do{
+            try realm.write{
+                let newNote = Note()
+                newNote.title = titleNote.text!
+                newNote.body = body.text
+                selectedCategory?.notes.append(newNote)
+                navigationController?.popViewController(animated: true)
+            }
+        }catch{
+            print("error adding note \(error)")
+        }
+        
+        
+        
         
     }
     
@@ -42,11 +55,13 @@ class AddViewController: UIViewController {
     }
     
     //MARK: - Model manupulation methods
-//       func saveNote(){
+//    func saveNote(note : Note){
 //           do {
-//               try context.save()
+//            try realm.write{
+//                realm.add(note)
+//            }
 //           }catch{
-//               print("Error saving context \(error)")
+//               print("Error saving the note\(error)")
 //           }
 //       }
     
