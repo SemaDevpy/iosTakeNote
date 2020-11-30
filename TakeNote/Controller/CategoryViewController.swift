@@ -57,13 +57,27 @@ class CategoryViewController: UITableViewController, SwipeTableViewCellDelegate 
     //Delete in CRUD
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
            let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-//            self.context.delete(self.categories[indexPath.row])
-//            self.categories.remove(at: indexPath.row)
-//            self.saveCategory()
-            print("Swipped")
+            if let categoryForDeletion = self.categories?[indexPath.row]{
+                do{
+                    try self.realm.write{
+                        self.realm.delete(categoryForDeletion)
+                    }
+                }catch{
+                    print("errror in deleting category object \(error)")
+                }
+            }
+            
+            
            }
            return [deleteAction]
        }
+    
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+            var options = SwipeOptions()
+            options.expansionStyle = .destructive
+            return options
+        }
     
     //MARK: - TableView Delegate Methods
 //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
