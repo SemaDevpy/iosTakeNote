@@ -6,5 +6,6 @@ target 'TakeNote' do
   use_frameworks!
 
   pod 'SwipeCellKit'
+  pod 'RealmSwift'
 
 end
