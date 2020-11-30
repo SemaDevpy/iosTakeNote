@@ -11,17 +11,16 @@ import CoreData
 import SwipeCellKit
 
 class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
-    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var notesArray = [Note]()
     var selectedCategory : Category? {
         didSet{
-            loadNotes()
+           // loadNotes()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        loadNotes()
+        //loadNotes()
     }
     
     
@@ -58,8 +57,8 @@ class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.secondCell, for: indexPath) as! SwipeTableViewCell
-        cell.delegate = self
-        cell.textLabel?.text = "Title: \(notesArray[indexPath.row].title!)"
+//        cell.delegate = self
+//        //cell.textLabel?.text = "Title: \(notesArray[indexPath.row].title!)"
         return cell
     }
     
@@ -68,7 +67,7 @@ class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
     //MARK: - Delete in CRUD
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            self.context.delete(self.notesArray[indexPath.row])
+            //self.context.delete(self.notesArray[indexPath.row])
             self.notesArray.remove(at: indexPath.row)
             self.saveNote()
         }
@@ -86,30 +85,30 @@ class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
     
     
     //MARK: - Model manupulation methods, Read in CRUD
-    func loadNotes(with request : NSFetchRequest<Note> = Note.fetchRequest(), predicate : NSPredicate? = nil){
-        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
-        if let savePredicate = predicate{
-           let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, savePredicate])
-           request.predicate = compoundPredicate
-        }else{
-            request.predicate = categoryPredicate
-        }
-        
-        do{
-            notesArray = try context.fetch(request)
-        }catch{
-            print("error in fetching the data \(error)")
-        }
-        tableView.reloadData()
-    }
+//    func loadNotes(with request : NSFetchRequest<Note> = Note.fetchRequest(), predicate : NSPredicate? = nil){
+//        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+//        if let savePredicate = predicate{
+//           let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, savePredicate])
+//           request.predicate = compoundPredicate
+//        }else{
+//            request.predicate = categoryPredicate
+//        }
+//
+//        do{
+//            notesArray = try context.fetch(request)
+//        }catch{
+//            print("error in fetching the data \(error)")
+//        }
+//        tableView.reloadData()
+//    }
     
     func saveNote(){
-        do {
-            try context.save()
-        }catch{
-            print("Error saving context \(error)")
-        }
-        tableView.reloadData()
+//        do {
+//            try context.save()
+//        }catch{
+//            print("Error saving context \(error)")
+//        }
+//        tableView.reloadData()
     }
     
     
@@ -117,26 +116,26 @@ class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
 
 
     //MARK: - Searching Functionality
-extension NoteViewController : UISearchBarDelegate{
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let request : NSFetchRequest<Note> = Note.fetchRequest()
-       
-        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-        
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        
-        loadNotes(predicate: predicate)
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text?.count == 0{
-            loadNotes()
-            
-            DispatchQueue.main.async {
-                searchBar.resignFirstResponder()
-            }
-            
-        }
-    }
-
-}
+//extension NoteViewController : UISearchBarDelegate{
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        let request : NSFetchRequest<Note> = Note.fetchRequest()
+//
+//        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+//
+//        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+//
+//        loadNotes(predicate: predicate)
+//    }
+//
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        if searchBar.text?.count == 0{
+//            loadNotes()
+//
+//            DispatchQueue.main.async {
+//                searchBar.resignFirstResponder()
+//            }
+//
+//        }
+//    }
+//
+//}

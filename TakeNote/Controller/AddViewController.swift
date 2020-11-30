@@ -11,7 +11,7 @@ import CoreData
 
 class AddViewController: UIViewController {
     var selectedCategory : Category?
-    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     
     @IBOutlet weak var titleNote: UITextField!
@@ -25,13 +25,13 @@ class AddViewController: UIViewController {
     
     //Create of CRUD
     @IBAction func addButtonPressed(_ sender: UIButton) {
-        let newNote = Note(context: context)
-        newNote.title = titleNote.text
-        newNote.body = body.text
-        newNote.date = Date()
-        newNote.parentCategory = selectedCategory
-        saveNote()
-        navigationController?.popViewController(animated: true)
+        let newNote = Note()
+//        newNote.title = titleNote.text
+//        newNote.body = body.text
+//        newNote.date = Date()
+//        newNote.parentCategory = selectedCategory
+//        saveNote()
+//        navigationController?.popViewController(animated: true)
         
     }
     
@@ -42,13 +42,13 @@ class AddViewController: UIViewController {
     }
     
     //MARK: - Model manupulation methods
-       func saveNote(){
-           do {
-               try context.save()
-           }catch{
-               print("Error saving context \(error)")
-           }
-       }
+//       func saveNote(){
+//           do {
+//               try context.save()
+//           }catch{
+//               print("Error saving context \(error)")
+//           }
+//       }
     
     
     
