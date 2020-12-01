@@ -13,8 +13,6 @@ class AddViewController: UIViewController {
     
     let realm = try! Realm()
     
-    var notes : Results<Note>?
-    
     var selectedCategory : Category?
 
 
@@ -24,8 +22,6 @@ class AddViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     //Create of CRUD
@@ -42,10 +38,6 @@ class AddViewController: UIViewController {
         }catch{
             print("error adding note \(error)")
         }
-        
-        
-        
-        
     }
     
 
@@ -53,24 +45,4 @@ class AddViewController: UIViewController {
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
     }
-    
-    //MARK: - Model manupulation methods
-//    func saveNote(note : Note){
-//           do {
-//            try realm.write{
-//                realm.add(note)
-//            }
-//           }catch{
-//               print("Error saving the note\(error)")
-//           }
-//       }
-    
-    
-    
-//    func loadNote(){
-//         let request : NSFetchRequest<Note> = Note.fetchRequest()
-//         let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
-//         request.predicate = categoryPredicate
-//
-//     }
 }

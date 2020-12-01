@@ -46,6 +46,7 @@ class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
         }else{
             let destinationVC = segue.destination as! UpdateViewController
             if let indexPath = tableView.indexPathForSelectedRow{
+                destinationVC.selectedCategory = selectedCategory
                 destinationVC.titleOfNote = notes?[indexPath.row].title
                 destinationVC.bodyOfNote = notes?[indexPath.row].body
             }
@@ -105,42 +106,25 @@ class NoteViewController: UITableViewController, SwipeTableViewCellDelegate{
         tableView.reloadData()
     }
     
-    
-    
-    func saveNote(){
-//        do {
-//            try context.save()
-//        }catch{
-//            print("Error saving context \(error)")
-//        }
-//        tableView.reloadData()
-    }
-    
-    
 }
 
 
     //MARK: - Searching Functionality
-//extension NoteViewController : UISearchBarDelegate{
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        let request : NSFetchRequest<Note> = Note.fetchRequest()
-//
-//        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-//
-//        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-//
-//        loadNotes(predicate: predicate)
-//    }
-//
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchBar.text?.count == 0{
-//            loadNotes()
-//
-//            DispatchQueue.main.async {
-//                searchBar.resignFirstResponder()
-//            }
-//
-//        }
-//    }
-//
-//}
+extension NoteViewController : UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        notes = selectedCategory?.notes.filter("title CONTAINS[cd] %@" , searchBar.text!)
+        tableView.reloadData()
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0{
+            loadNotes()
+
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+
+        }
+    }
+
+}

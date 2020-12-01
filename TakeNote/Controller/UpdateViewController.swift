@@ -7,12 +7,16 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class UpdateViewController: UIViewController {
+    
+    let realm = try! Realm()
+    
+    var selectedCategory : Category?
     var titleOfNote : String?
     var bodyOfNote : String?
-
+    
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var textView: UITextView!
@@ -24,31 +28,29 @@ class UpdateViewController: UIViewController {
     }
     
     @IBAction func updateButtonPressed(_ sender: UIButton) {
-//             let request : NSFetchRequest<Note> = Note.fetchRequest()
-//             let noteTitlePredicate = NSPredicate(format: "title MATCHES %@", titleOfNote!)
-//             request.predicate = noteTitlePredicate
-//             do{
-//                 let note = try context.fetch(request)
-//                note[0].title = titleTextField.text!
-//                note[0].body = textView.text
-//                note[0].date = Date()
-//                saveNote()
-//                navigationController?.popViewController(animated: true)
-//             }catch{
-//                 print("error in fetching the data \(error)")
-//             }
+        
+        if let saveCategory = selectedCategory{
+            
+            do{
+                try realm.write{
+                    let note = saveCategory.notes.filter("title == %@", titleOfNote!)
+                    note[0].title = titleTextField.text!
+                    note[0].body = textView.text
+                    navigationController?.popViewController(animated: true)
+                }
+            }catch{
+                print("error in updating the note")
+            }
+            
+        }
+        
+        
+        
     }
     
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
     }
     
-    //MARK: - Model manupulation methods
-//       func saveNote(){
-//           do {
-//               try context.save()
-//           }catch{
-//               print("Error saving context \(error)")
-//           }
-//       }
+    
 }
